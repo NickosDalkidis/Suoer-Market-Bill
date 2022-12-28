@@ -263,5 +263,81 @@ void shopping::list()
 {
 	fstream data;
 	data.open("database.txt",ios::in)
+	cout<<"ProNo\t\tName\t\tPrce\n";
+	data>>pcode>>pname>>dis;
+	while(!data.eof())
+	{
+		cout<<pcode<<pname<<price<<"\n";
+		data>>pcode>>pname>>dis;
+	}
+	data.close();
+}
+void shopping::receipt()
+{
+	fstream data;
+	int arrc[100],arrc[100],c=0;
+	float amount=0;dis=0,total=0;
+	char choice;
+	
+	
+	cout<<" Receipt ";
+	data.open("database.txt",ios::in)
+	if(!data)
+	{
+		cout<<"Empty Database";
+	}
+	else
+	{
+		data.close();
+		list();
+		cout<<" Please Place The Order ";
+		do
+		{
+			cout<<"Please Enter The Product Code";
+			cin>>arrc[c];
+			cout<<"Please Enter The Producy Quantity";
+			cin>>arrq[c];
+			for(int i=0;i<c;i++)
+			{
+				if(arrc[c]==arrc[i])
+				{
+					cout<<"Duplicate code Please try again";
+					goto m;
+				}
+			}
+			c++;
+			cout<<"Do you want to buy another product ?Yes Or No";
+			cin>>choice;
+		}
+		while(choice=="yes");
+		cout<<"Repeipt\n";
+		cout<<"Product Name\n Quantity\n Price\n Amount With Discound\n";
+		for	(int i=0;i<c;i++)
+		{
+			data.open("database.exe"ios::in);
+			data>>pcode>>pname>>dis;
+			while(!data.eof())
+			{
+				if(pcode=arrc[i])
+				{
+					amount=price*arrq[i];
+					dis=amount-(amount*dis/100);
+					total=total+dis
+					cout<<pcode<<pname<<arrq[i]<<price<<amount<<"\n";
+					
+				}
+				data>>pcode>>pname>>dis;
+			}
+				
+		}
+		data.close();
+	}
+	cout<<" Total Amount:"<<total;
+}
+int main
+{
+	shopping s;
+	s.menu();
+}		
 }
 
